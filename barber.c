@@ -54,12 +54,9 @@ int main()
 	scanf("%d", &threads_count);
 
 	threads_id = (pthread_t*)malloc(threads_count * sizeof(pthread_t));
-	sem_init(&sem_clients, 0, N);
+	sem_init(&sem_clients, 0, 0);
 	sem_init(&sem_free_chairs, 0, N + 1);
-	sem_init(&sem_work, 0, 1);
-	for(i = 0; i < N; ++i)
-		sem_wait(&sem_clients);
-	sem_wait(&sem_work);
+	sem_init(&sem_work, 0, 0);
 
 	pthread_create(&barber_id, NULL, barber, NULL);
 	for(i = 0; i < threads_count; ++i)
